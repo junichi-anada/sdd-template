@@ -28,17 +28,12 @@
 - 実装: テストを先に落とし、実装でグリーンにします。
 - 検証: `scripts/test.sh` もしくは `make test-docker`、CI を使って検証。
 
-<<<<<<< HEAD
  
-=======
 ### メタ変更（テンプレート自身の改善）
-- テンプレート（ドキュメント/Make/スクリプト/PRテンプレ等）の改善も SDD を厳守。
-- 仕様起票はコマンドで行います:
-	- `make spec TITLE='meta: <仕様の内容>'`
-- 生成されるSpecファイル名: `specs/meta-<slug>-<stamp>.md`（例: `specs/meta-rule-update-20250101-120000.md`）。
-	- ただし、slug が `meta` のみになるケースは冗長回避のため `specs/meta-<stamp>.md` に縮約。
->>>>>>> dd8d81c (meta: テンプレート改善もSDD遵守に統一\n\n- gen.sh: meta: タイトルのspecは meta-<slug>-<stamp>.md（slug=metaのときは meta-<stamp>.md に縮約）\n- tests: meta_spec_generation.sh 追加（固定名）\n- docs: README / docs/sdd-flow にメタ命名ルールとレガシー方針を追記\n- PR: .github/pull_request_template.md にメタ変更チェックリスト追加\n\nRefs: specs/20251113-025417-meta-sdd.md, plans/20251113-030953-meta-sdd.md)
-- 旧形式（`meta=`）で作成済みのSpecは履歴保持のためリネーム不要。今後は `meta:` を使用。
+- テンプレート（ドキュメント / Make / スクリプト / PRテンプレ 等）の改善も SDD を厳守。
+- 仕様起票コマンド: `make spec TITLE='meta: <仕様の内容>'`
+- ファイル命名: `specs/meta-<slug>-<stamp>.md`（slug が `meta` のみなら `specs/meta-<stamp>.md` に縮約）
+- 旧形式 `meta=` で作成済みのSpecはレガシーとして保持（リネーム不要）。今後は `meta:` を使用。
 
 ## GitHub CI（条件付き）
 

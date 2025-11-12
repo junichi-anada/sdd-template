@@ -1,15 +1,7 @@
 # AIエージェント主導 SDD テンプレート（Laravel 初期対応）
-
-このリポジトリは、AIエージェント主導で仕様駆動開発（SDD）を進めるためのテンプレートです。最初の対象スタックは Laravel ですが、将来的に他スタックも拡張できます。
-
 ## このテンプレートでできること
-
-1. 技術スタックを `sdd.config.json` に指定すると、AIエージェント（＋スクリプト）が開発環境の初期化を自動化します（初期対応: Laravel）。
 2. AIエージェントが SDD フロー（仕様 → 計画 → テスト → 実装 → 検証）に沿って作業を推進します。
-3. 仕様（spec）はユーザーの概要入力を基にエージェントが作成し、ユーザー承認ゲートを通過して確定します。
 4. 計画（plan）はエージェントが作成し、ユーザー承認ゲートで確定します。
-5. テストはエージェントが作成します（Laravel は PHPUnit）。
-6. コード実装はエージェントが作成します。
 7. テストの実行はエージェントが実行します（ローカルまたは CI）。
 
 ## ディレクトリ構成
@@ -21,17 +13,9 @@
 - `templates/` 仕様・計画・テストのテンプレート
 - `docs/` SDD フローや運用ドキュメント
 - `.github/` ワークフロー・Issue/PR テンプレート・エージェント指示
-
-## クイックスタート
-
 前提: Linux + bash。Docker を推奨（Composer/PHP をローカルに入れなくても初期化可能）。
 
 1) スタック設定を確認/更新
-
-- `sdd.config.json` を開き、stack を `laravel` に、必要ならバージョンやプロジェクト名を設定。
-
-2) 初期化（Docker 推奨）
-
 - `sdd.config.json` で `docker.enabled=true`（既定）。
 - `make init` を実行すると composer コンテナ経由で Laravel + Sail をセットアップ。
 - その後 `make up` でコンテナ起動、`make artisan CMD='migrate'` 等で操作。
@@ -44,7 +28,16 @@
 - 実装: テストを先に落とし、実装でグリーンにします。
 - 検証: `scripts/test.sh` もしくは `make test-docker`、CI を使って検証。
 
+<<<<<<< HEAD
  
+=======
+### メタ変更（テンプレート自身の改善）
+- テンプレート（ドキュメント/Make/スクリプト/PRテンプレ等）の改善も SDD を厳守。
+- 仕様起票はコマンドで行います:
+	- `make spec TITLE='meta: <仕様の内容>'`
+- 生成されるSpecファイル名: `specs/meta-<slug>-<stamp>.md`（例: `specs/meta-rule-update-20250101-120000.md`）。
+	- ただし、slug が `meta` のみになるケースは冗長回避のため `specs/meta-<stamp>.md` に縮約。
+>>>>>>> dd8d81c (meta: テンプレート改善もSDD遵守に統一\n\n- gen.sh: meta: タイトルのspecは meta-<slug>-<stamp>.md（slug=metaのときは meta-<stamp>.md に縮約）\n- tests: meta_spec_generation.sh 追加（固定名）\n- docs: README / docs/sdd-flow にメタ命名ルールとレガシー方針を追記\n- PR: .github/pull_request_template.md にメタ変更チェックリスト追加\n\nRefs: specs/20251113-025417-meta-sdd.md, plans/20251113-030953-meta-sdd.md)
 - 旧形式（`meta=`）で作成済みのSpecは履歴保持のためリネーム不要。今後は `meta:` を使用。
 
 ## GitHub CI（条件付き）

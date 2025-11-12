@@ -1,0 +1,17 @@
+{
+  "stack": "laravel",
+  "docker": {
+    "enabled": true,
+    "sail": {
+      "use": true,
+      "with": ["mysql"],
+      "php": "8.3"
+    }
+  },
+  "laravel": {
+    "projectName": "sdd-app",
+    "version": "^11.0",
+    "php": ">=8.2",
+    "withPest": true
+  }
+}
